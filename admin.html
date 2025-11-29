@@ -152,7 +152,15 @@
       }
 
       function categoryFilter(){
-        let category = document.getElementById("")
+        let category = document.getElementById("filterCategory");
+
+        if(category === "All"){
+          renderCards(cards);
+          return
+        }
+
+        let filtered = cards.filter(card => card.category === category);
+        renderCards(filtered);
       }
     </script>
   </body>
