@@ -21,7 +21,21 @@
     </style>
   </head>
   <body>
-    <nav></nav>
+    <nav>
+      <select name="category" id="filterCategory" onchange="categoryFilter()">
+        <option value="">all</option>
+        <option value="auto">auto</option>
+        <option value="car">car</option>
+        <option value="truck">truck</option>
+        <option value="bus">bus</option>
+      </select>
+      <select name="isAvailable" id="filterStatus" placeholder="Select Status" onchange="statusFilter()">
+        <option value="">All</option>
+        <option value="Available">Available</option>
+        <option value="Unavilable">Unavailable\</option>
+      </select>
+      <button onclick="clearFilter()" id="clearFilter">Clear Filter</button>
+    </nav>
     <aside class="sidebar" style="width: 300px">
       <input type="text" id="vehicleNo" placeholder="Enter Vehicle no" />
       <select name="category" id="category" Placeholder="Select category">
@@ -66,6 +80,12 @@
 
         cards.push(card);
         renderCards(cards);
+
+        document.getElementById("vehicleNo").value ="";
+        document.getElementById("category").value = "";
+        document.getElementById("driverName").value = "";
+        document.getElementById("isAvailable").value = "";
+
       }
 
       function renderCards(cardList) {
@@ -96,7 +116,12 @@
 
           updateBtn.addEventListener("click", () => {
             let updName = prompt("Enter new Driver name");
-            driverName.textContent = updName;
+            if(!updName){
+              driverName.textContent = updName;
+            }else{
+              alert("Driver name cannot be empty")
+            }
+            
           });
 
           let deleteBtn = document.createElement("button");
@@ -124,6 +149,10 @@
       function deleteVehicle(index){
         cards.splice(index,1);
         renderCards(cards);
+      }
+
+      function categoryFilter(){
+        let category = document.getElementById("")
       }
     </script>
   </body>
