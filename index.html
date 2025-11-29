@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fleet Management App</title>
+</head>
+<body>
+  <h1>Login Page</h1>
+  <input type="email" id="email" placeholder="Enter your Email">
+  <input type="password" id="password" placeholder="Enter your Password">
+  <button onclick="goToAdmin();">Login</button>
+</body>
+<script>
+  function goToAdmin(){
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    if(!email || !password){
+      alert("Wrong email or password");
+    }
+    else{
+      alert("Login success");
+    window.location.href="admin.html";
+  }
+  }
+</script>
+</html>

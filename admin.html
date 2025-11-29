@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+</head>
+<body>
+  <nav></nav>
+  <aside class="sidebar">
+    <input type="text" id="vehicleNo" placeholder="Enter Vehicle no">
+    <select name="category" id="category" Placeholder="Select category">
+      <option value="">all</option>
+      <option value="auto">auto</option>
+      <option value="car">car</option>
+      <option value="truck">truck</option>
+      <option value="bus">bus</option>
+    </select>
+    <input type="text" id="driverName" placeholder="Enter the driver Name">
+    <select name="isAvailable" id="isAvailable" placeholder="Select Status">
+      <option value="">All</option>
+      <option value="Available">Available</option>
+      <option value="Unavilable">Unavailable\</option>
+    </select>
+    <button onclick="addFleet();">Add Fleet</button>
+  </aside>
+  <div id="mainSection">
+  </div>
+  <script>
+    let cards = []
+    let IMAGE_URL = "https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png"
+    function addFleet(){
+      let vehicleNo = document.getElementById("vehicleNo").value;
+      let category = document.getElementById("category").value;
+      let driverName = document.getElementById("driverName").value;
+      let isAvailable= document.getElementById("isAvailable").value;
+
+      if(!vehicleNo || !category || !driverName || !isAvailable){
+        alert("Please fill all the fields");
+        return;
+      }
+
+      let card = {
+        vehicleNo,
+        category,
+        driverName,
+        isAvailable,
+        imageUrl: IMAGE_URL
+      }
+
+      cards.push(card);
+      renderCards(cards);
+    }
+
+    function renderCards(cardList){
+      let container = document.getElementById("mainSection");
+      container.innerHTML = "";
+
+      cardList.forEach((card, index) => {
+        let card = document.createElement("div");
+        card.className = "card";
+
+        let img = document.createElement("img");
+        img.src = card.imageUrl
+
+        let vehicleNo = document.createElement("p");
+        vehicleNo.textContent = card.vehicleNo;
+
+        let category = document.createElement("p");
+        category.textContent = card.category;
+
+        let driverName = document.createElement("h3");
+        driverName.textContent = card.driverName;
+
+        let status = document.createElement("p");
+        status.textContent = card.isAvailable;
+
+        card.appendChild(img);
+        card.appendChild(vehicleNo);
+        card.appendChild(category);
+        card.appendChild(driverName);
+        card.appendChild(status);
+
+        container.appendChild(card);
+      })
+    }
+  </script>
+</body>
+</html>
