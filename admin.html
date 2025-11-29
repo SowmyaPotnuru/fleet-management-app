@@ -162,6 +162,18 @@
         let filtered = cards.filter(card => card.category === category);
         renderCards(filtered);
       }
+
+      function statusFilter(){
+        let status = document.getElementById("filterStatus");
+
+        if(status === "All"){
+          renderCards(cards);
+          return
+        }
+
+        let filtered = cards.filter(card => card.status === status);
+        renderCards(filtered);
+      }
     </script>
   </body>
 </html>
